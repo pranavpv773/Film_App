@@ -12,4 +12,12 @@ class Routes {
   static backScreen() {
     navigatorKey.currentState?.pop();
   }
+
+  static removeScreenUntil({required var screen}) {
+    navigatorKey.currentState!.pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => screen,
+        ),
+        (route) => false);
+  }
 }
