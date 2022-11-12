@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class HomeNotifier with ChangeNotifier {
   List<ShowModel> showsList = [];
+  DateTime? currentBackPressTime;
 
   Future<void> showsApiFunction() async {
     log("showsApiFunction");
@@ -25,5 +26,17 @@ class HomeNotifier with ChangeNotifier {
         toastLength: Toast.LENGTH_LONG,
       );
     }
+  }
+
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      Fluttertoast.showToast(
+          msg: "Double Tab to Exit", toastLength: Toast.LENGTH_LONG);
+      return Future.value(false);
+    }
+    return Future.value(true);
   }
 }

@@ -19,121 +19,126 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kPrimary,
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            const SliverAppBarWidget(),
-          ];
-        },
-        body: context.watch<HomeNotifier>().showsList.isEmpty
-            ? const ShimmerHomeBuilderWidget()
-            : Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: GridView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16.0,
-                  ),
-                  physics: const ScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    mainAxisExtent: 250.h,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                  ),
-                  itemCount: context.read<HomeNotifier>().showsList.length,
-                  itemBuilder: (BuildContext ctx, index) {
-                    final data = context.read<HomeNotifier>().showsList;
-                    return FadeInDownBig(
-                      child: GestureDetector(
-                        onTap: () {
-                          Routes.nextScreen(
-                              screen: DetailScreen(
-                                  image: data[index].image!.original.toString(),
-                                  index: index));
-                        },
-                        child: Container(
-                          width: 150.w,
-                          height: 260.h,
-                          decoration: BoxDecoration(
-                            color: AppColors.kWhite,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 150.w,
-                                height: 155.h,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(data[index]
-                                          .image!
-                                          .original
-                                          .toString()),
-                                      fit: BoxFit.cover),
-                                  color: AppColors.kWhite,
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20),
+      body: WillPopScope(
+        onWillPop: context.watch<HomeNotifier>().onWillPop,
+        child: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              const SliverAppBarWidget(),
+            ];
+          },
+          body: context.watch<HomeNotifier>().showsList.isEmpty
+              ? const ShimmerHomeBuilderWidget()
+              : Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: GridView.builder(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16.0,
+                    ),
+                    physics: const ScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      mainAxisExtent: 250.h,
+                      childAspectRatio: 3 / 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                    ),
+                    itemCount: context.read<HomeNotifier>().showsList.length,
+                    itemBuilder: (BuildContext ctx, index) {
+                      final data = context.read<HomeNotifier>().showsList;
+                      return FadeInDownBig(
+                        child: GestureDetector(
+                          onTap: () {
+                            Routes.nextScreen(
+                                screen: DetailScreen(
+                                    image:
+                                        data[index].image!.original.toString(),
+                                    index: index));
+                          },
+                          child: Container(
+                            width: 150.w,
+                            height: 260.h,
+                            decoration: BoxDecoration(
+                              color: AppColors.kWhite,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 150.w,
+                                  height: 155.h,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(data[index]
+                                            .image!
+                                            .original
+                                            .toString()),
+                                        fit: BoxFit.cover),
+                                    color: AppColors.kWhite,
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Center(
-                                child: ListTile(
-                                  leading: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        data[index].name.toString(),
-                                        style: AppTextStyles.h4.copyWith(
-                                          fontSize: 16.sp,
-                                          color: AppColors.kPrimary,
-                                          overflow: TextOverflow.ellipsis,
+                                Center(
+                                  child: ListTile(
+                                    leading: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          data[index].name.toString(),
+                                          style: AppTextStyles.h4.copyWith(
+                                            fontSize: 16.sp,
+                                            color: AppColors.kPrimary,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        data[index].language.toString(),
-                                        style: AppTextStyles.h4.copyWith(
-                                          fontSize: 16.sp,
-                                          color: AppColors.kGrey,
+                                        Text(
+                                          data[index].language.toString(),
+                                          style: AppTextStyles.h4.copyWith(
+                                            fontSize: 16.sp,
+                                            color: AppColors.kGrey,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 10.w,
-                                    horizontal: 10.w,
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 10.w,
+                                      horizontal: 10.w,
+                                    ),
+                                    primary: AppColors.kSecondary,
+                                    textStyle: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10.sp,
+                                        fontStyle: FontStyle.normal),
                                   ),
-                                  primary: AppColors.kSecondary,
-                                  textStyle: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10.sp,
-                                      fontStyle: FontStyle.normal),
-                                ),
-                                onPressed: () {
-                                  context
-                                      .read<CastNotifier>()
-                                      .castApiFunction(index + 1);
-                                  Routes.nextScreen(screen: const CastScreen());
-                                },
-                                child: const Text('cast'),
-                              )
-                            ],
+                                  onPressed: () {
+                                    context
+                                        .read<CastNotifier>()
+                                        .castApiFunction(index + 1);
+                                    Routes.nextScreen(
+                                        screen: const CastScreen());
+                                  },
+                                  child: const Text('cast'),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-              ),
+        ),
       ),
     );
   }

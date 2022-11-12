@@ -28,173 +28,177 @@ class CastScreen extends StatelessWidget {
       ),
       body: context.watch<CastNotifier>().castList.isEmpty
           ? const ShimmerBuilderWidget()
-          : Consumer<CastNotifier>(builder: (context, val, _) {
-              return SizedBox(
-                width: width,
-                height: height,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: val.castList.length,
-                    itemBuilder: (context, index) {
-                      log(val.castList[7].person!.birthday.toString());
-                      return FadeInUpBig(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            elevation: 10,
-                            shadowColor: AppColors.kPrimary,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.all(10),
-                                  width: 120,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.kWhite,
-                                    borderRadius: BorderRadius.circular(20),
-                                    image: DecorationImage(
-                                      image: NetworkImage(val.castList[index]
-                                          .person!.image!.original
-                                          .toString()),
-                                      fit: BoxFit.fitHeight,
+          : Consumer<CastNotifier>(
+              builder: (context, val, _) {
+                return SizedBox(
+                  width: width,
+                  height: height,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: val.castList.length,
+                      itemBuilder: (context, index) {
+                        log(val.castList[7].person!.birthday.toString());
+                        return FadeInUpBig(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              elevation: 10,
+                              shadowColor: AppColors.kPrimary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.all(10),
+                                    width: 120,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.kWhite,
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: NetworkImage(val.castList[index]
+                                            .person!.image!.original
+                                            .toString()),
+                                        fit: BoxFit.fitHeight,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        val.castList[index].person!.name
-                                            .toString(),
-                                        style: AppTextStyles.h3.copyWith(
-                                            color: AppColors.kGrey,
-                                            letterSpacing: 1,
-                                            wordSpacing: 1.5,
-                                            overflow: TextOverflow.ellipsis,
-                                            fontSize: 16),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        val.castList[index].character!.name !=
-                                                null
-                                            ? "Character: ${val.castList[index].character!.name.toString()}"
-                                            : "No Character",
-                                        style: AppTextStyles.h3.copyWith(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: AppColors.kGrey,
-                                            fontSize: 13),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Container(
-                                        width: 120,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: const Color.fromARGB(
-                                              255, 108, 234, 113),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(
+                                          height: 5,
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                            val.castList[index].person!
-                                                        .gender !=
-                                                    null
-                                                ? val.castList[index].person!
-                                                    .gender
-                                                    .toString()
-                                                : "No Gender",
-                                            style: AppTextStyles.h3.copyWith(
-                                                color: const Color.fromARGB(
-                                                  255,
-                                                  95,
-                                                  130,
-                                                  97,
-                                                ),
-                                                fontSize: 13),
+                                        Text(
+                                          val.castList[index].person!.name
+                                              .toString(),
+                                          style: AppTextStyles.h3.copyWith(
+                                              color: AppColors.kGrey,
+                                              letterSpacing: 1,
+                                              wordSpacing: 1.5,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: 16),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          val.castList[index].character!.name !=
+                                                  null
+                                              ? "Character: ${val.castList[index].character!.name.toString()}"
+                                              : "No Character",
+                                          style: AppTextStyles.h3.copyWith(
+                                              overflow: TextOverflow.ellipsis,
+                                              color: AppColors.kGrey,
+                                              fontSize: 13),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          width: 120,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: const Color.fromARGB(
+                                                255, 108, 234, 113),
                                           ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "Self: ${val.castList[index].self.toString()}",
-                                        style: AppTextStyles.h3.copyWith(
-                                            color: AppColors.kGrey,
-                                            fontSize: 13),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
+                                          child: Center(
+                                            child: Text(
                                               val.castList[index].person!
-                                                          .birthday ==
+                                                          .gender !=
                                                       null
-                                                  ? "No Birth-date"
-                                                  : DateFormat('dd-MM-yyyy')
-                                                      .format(val
-                                                          .castList[index]
-                                                          .person!
-                                                          .birthday!)
-                                                      .toString(),
+                                                  ? val.castList[index].person!
+                                                      .gender
+                                                      .toString()
+                                                  : "No Gender",
                                               style: AppTextStyles.h3.copyWith(
-                                                  color: AppColors.kGrey,
+                                                  color: const Color.fromARGB(
+                                                    255,
+                                                    95,
+                                                    130,
+                                                    97,
+                                                  ),
                                                   fontSize: 13),
                                             ),
-                                            // Text(
-                                            //   val.castList[index].person!.deathday
-                                            //       .toString(),
-                                            //   style: AppTextStyles.h3.copyWith(
-                                            //       color: AppColors.kGrey,
-                                            //       fontSize: 13),
-                                            // ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        val.castList[index].voice != null
-                                            ? "Self voice: ${val.castList[index].voice.toString()}"
-                                            : "No voice",
-                                        style: AppTextStyles.h3.copyWith(
-                                            color: AppColors.kGrey,
-                                            fontSize: 13),
-                                      ),
-                                    ],
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          "Self: ${val.castList[index].self.toString()}",
+                                          style: AppTextStyles.h3.copyWith(
+                                              color: AppColors.kGrey,
+                                              fontSize: 13),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                val.castList[index].person!
+                                                            .birthday ==
+                                                        null
+                                                    ? "No Birth-date"
+                                                    : DateFormat('dd-MM-yyyy')
+                                                        .format(val
+                                                            .castList[index]
+                                                            .person!
+                                                            .birthday!)
+                                                        .toString(),
+                                                style: AppTextStyles.h3
+                                                    .copyWith(
+                                                        color: AppColors.kGrey,
+                                                        fontSize: 13),
+                                              ),
+                                              // Text(
+                                              //   val.castList[index].person!.deathday
+                                              //       .toString(),
+                                              //   style: AppTextStyles.h3.copyWith(
+                                              //       color: AppColors.kGrey,
+                                              //       fontSize: 13),
+                                              // ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          val.castList[index].voice != null
+                                              ? "Self voice: ${val.castList[index].voice.toString()}"
+                                              : "No voice",
+                                          style: AppTextStyles.h3.copyWith(
+                                              color: AppColors.kGrey,
+                                              fontSize: 13),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-              );
-            }),
+                        );
+                      }),
+                );
+              },
+            ),
     );
   }
 }
