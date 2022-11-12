@@ -35,6 +35,6 @@ class AppTextStyles {
 
   static TextStyle h4 = TextStyle(
     fontSize: 8,
-    color: AppColors.kWhite,
+    color: AppColors.kSecondary,
   );
 }
