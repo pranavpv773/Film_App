@@ -9,7 +9,7 @@ class SplashNotifier with ChangeNotifier {
     await Future.delayed(
       const Duration(seconds: 5),
     );
-    await context.read<HomeNotifier>().showsApiFunction();
+    context.read<HomeNotifier>().showsApiFunction();
     Routes.removeScreenUntil(
       screen: const HomeScreen(),
     );

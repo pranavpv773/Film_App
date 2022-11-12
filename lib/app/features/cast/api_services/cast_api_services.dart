@@ -10,7 +10,7 @@ class CastApiService {
       log("try");
 
       Response response =
-          await Dio().get("https://api.tvmaze.com/shows/$index/cast");
+          await Dio().get("https://api.tvmaze.com/shows/1/cast");
       if (response.statusCode == 200) {
         log("message");
         return CastResponse.fromJson(response.data, "success", true);
