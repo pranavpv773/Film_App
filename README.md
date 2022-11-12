@@ -3,10 +3,10 @@
 A new Flutter project, 
 
 # Statemanagement
-## Provider
+## --Provider
 
 # Architecture
-##MVVM
+## --MVVM
 
 
 # Packages Used
