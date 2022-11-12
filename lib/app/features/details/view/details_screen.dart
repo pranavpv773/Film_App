@@ -187,52 +187,6 @@ Widget bottomDetailsSheet(int index1) {
                   ),
                 ),
               ),
-              ListTile(
-                title: Text(
-                  "Homepage Url",
-                  style: AppTextStyles.h3
-                      .copyWith(color: AppColors.kGrey, letterSpacing: 1),
-                ),
-                subtitle: Text(
-                  context.read<HomeNotifier>().showsList[index1].type != null &&
-                          context
-                              .read<HomeNotifier>()
-                              .showsList[index1]
-                              .type!
-                              .isNotEmpty
-                      ? context
-                          .read<HomeNotifier>()
-                          .showsList[index1]
-                          .type
-                          .toString()
-                      : "No Homepage url",
-                  style: AppTextStyles.h2.copyWith(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Issues",
-                  style: AppTextStyles.h3
-                      .copyWith(color: AppColors.kGrey, letterSpacing: 1),
-                ),
-                subtitle: Text(
-                  context.read<HomeNotifier>().showsList[index1].language !=
-                          null
-                      ? context
-                          .read<HomeNotifier>()
-                          .showsList[index1]
-                          .language
-                          .toString()
-                      : "No issues",
-                  style: AppTextStyles.h2.copyWith(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
